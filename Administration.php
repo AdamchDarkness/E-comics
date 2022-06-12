@@ -53,8 +53,8 @@ if (isset($_SESSION['id']) AND $_SESSION['id'] > 0)
 
 	if (!empty($_POST['Nom_Comics']) AND !empty($_POST['resumer']) AND !empty($_POST['Url_Comics']))
 {
-	$inserttmbr = $bdd->prepare("INSERT INTO comics (Nom_Comics,resumer, id_Categorie, Url_Comics, id_user) VALUES(?,?,?,?)");
-	$inserttmbr->execute(array($Nom_Comics,$id_Categorie,$Url_Comics,$userinfo['id']));
+	$inserttmbr = $bdd->prepare("INSERT INTO comics (Nom_Comics,resumer, id_Categorie, Url_Comics, id_user) VALUES(?,?,?,?,?)");
+	$inserttmbr->execute(array($Nom_Comics,$resumer,$id_Categorie,$Url_Comics,$userinfo['id']));
 	$lastid = $bdd->lastInsertId();
       if(isset($_FILES['imageja']) AND !empty($_FILES['imageja']['name'])) {
               if(exif_imagetype($_FILES['imageja']['tmp_name']) == 2) {
@@ -132,7 +132,7 @@ if (isset($_SESSION['id']) AND $_SESSION['id'] > 0)
  	</form>
  <br><br>
  <h1 align="center">Upload un comics</h1>
-		<form method="POST" action="">
+		<form method="POST" enctype="multipart/form-data" action="">
 				<table>
 					<tr>
 						<td align="right"> 
